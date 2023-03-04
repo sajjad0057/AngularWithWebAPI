@@ -13,6 +13,21 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CrudDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CrudConnectionString")));
 
+//#region ForConfiguring CORS
+
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowSites",
+//        builder =>
+//        {
+//            builder.AllowAnyOrigin()
+//               .AllowAnyMethod()
+//               .AllowAnyHeader();
+//        });
+//});
+
+//#endregion
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
