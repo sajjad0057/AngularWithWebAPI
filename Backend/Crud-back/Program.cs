@@ -1,3 +1,6 @@
+using Crud_back.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<CrudDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CrudConnectionString")));
 
 var app = builder.Build();
 
@@ -17,6 +23,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(policy => policy.AllowAnyHeader().AllowAnyHeader().AllowAnyOrigin());
 
 app.UseAuthorization();
 
