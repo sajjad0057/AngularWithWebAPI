@@ -13,20 +13,20 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CrudDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CrudConnectionString")));
 
-//#region ForConfiguring CORS
+#region ForConfiguring CORS
 
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("AllowSites",
-//        builder =>
-//        {
-//            builder.AllowAnyOrigin()
-//               .AllowAnyMethod()
-//               .AllowAnyHeader();
-//        });
-//});
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSites",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+        });
+});
 
-//#endregion
+#endregion
 
 var app = builder.Build();
 
@@ -39,7 +39,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors(policy => policy.AllowAnyHeader().AllowAnyHeader().AllowAnyOrigin());
+//app.UseCors(policy => policy.AllowAnyHeader().AllowAnyHeader().AllowAnyOrigin());
 
 app.UseAuthorization();
 

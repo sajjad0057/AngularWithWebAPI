@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-6">
             <form #form="ngForm" (ngSubmit)="updateEmployee()">
-                <input type="text" class="form-control" id="id" name="id" 
+                <input type="text" hidden class="form-control" id="id" name="id" 
                 readonly [(ngModel)] = "employeeDetails.id">
                 <div class="mb-3">
                   <label for="name" class="form-label">Name</label>
